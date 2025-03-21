@@ -6,7 +6,9 @@ const bodyParser = require("body-parser");
 
 // Initialize Express app
 const app = express();
-const PORT = 5300;
+
+// Use environment variable for port or default to 3000 (Render automatically sets this)
+const PORT = process.env.PORT || 3000;
 
 // Middleware for handling CORS and JSON body parsing
 app.use(cors());
@@ -108,15 +110,4 @@ app.post("/rfid", async (req, res) => {
       });
     }
 
-    console.log(`✅ RFID tag ${tagID} updated to ${newStatus}`);
-    res.status(200).json({ success: true, message: `RFID Data Updated: ${newStatus}`, tagID });
-  } catch (error) {
-    console.error("❌ Error processing RFID data:", error);
-    res.status(500).json({ success: false, message: "Server error" });
-  }
-});
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`💻 Server running on port ${PORT}`);
-});
+    console.log(`✅ RFID tag ${tagID}
