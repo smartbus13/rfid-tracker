@@ -110,4 +110,15 @@ app.post("/rfid", async (req, res) => {
       });
     }
 
-    console.log(`✅ RFID tag ${tagID}
+    console.log(`✅ RFID tag ${tagID} processed successfully.`);
+    return res.status(200).json({ success: true, message: "RFID tag processed" });
+  } catch (error) {
+    console.error("❌ Error processing RFID data:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`💻 Server running on port ${PORT}`);
+});
